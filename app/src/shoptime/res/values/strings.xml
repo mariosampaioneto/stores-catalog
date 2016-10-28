@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Shoptime catalog</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--navigation drawer-->
+    <string name="item_title_highlights">Destaques</string>
+    <string name="item_title_category">Departamentos</string>
+
+    <!--dialogs-->
+    <string name="progress_dialog_message">Aguarde...</string>
+    <string name="error_dialog_title">Atenção</string>
+    <string name="error_dialog_message">Ocorreu um problema ao carregar os dados\nDeseja tentar novamente?</string>
+</resources>
