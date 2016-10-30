@@ -24,11 +24,6 @@
         </activity>
 
         <activity
-            android:name=".modules.product.detail.ProductDetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-
-        <activity
             android:name=".modules.subcategory.SubCategoryListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
@@ -37,6 +32,10 @@
             android:name=".modules.product.list.ProductListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="4068242e0ba4637966f969671ae48c0ec328e27f" />
     </application>
 
 </manifest>

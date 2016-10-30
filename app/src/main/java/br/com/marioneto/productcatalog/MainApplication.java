@@ -2,11 +2,13 @@ package br.com.marioneto.productcatalog;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 
 import br.com.marioneto.productcatalog.dagger.DaggerMainComponent;
 import br.com.marioneto.productcatalog.dagger.MainComponent;
 import br.com.marioneto.productcatalog.dagger.module.ApplicationModule;
+import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -28,12 +30,17 @@ public class MainApplication extends Application {
 
         initDagger();
         initCalligraphy();
-        if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this);
-            initTimber();
-        } else {
-//            initCrashlytics();
-        }
+        //ok, we'll have only debug versions =p, not needed
+//        if (BuildConfig.DEBUG) {
+        Stetho.initializeWithDefaults(this);
+        initTimber();
+//        } else {
+        initCrashlytics();
+//        }
+    }
+
+    private void initCrashlytics() {
+        Fabric.with(this, new Crashlytics());
     }
 
     private void initDagger() {
@@ -44,7 +51,6 @@ public class MainApplication extends Application {
 
     private void initTimber() {
         Timber.plant(new Timber.DebugTree());
-//        Timber.plant(new CrashlyticsTree());
     }
 
     private void initCalligraphy() {
