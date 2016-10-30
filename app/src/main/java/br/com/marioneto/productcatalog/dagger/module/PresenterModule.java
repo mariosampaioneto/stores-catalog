@@ -1,6 +1,5 @@
 package br.com.marioneto.productcatalog.dagger.module;
 
-import br.com.marioneto.productcatalog.core.model.ProductList;
 import br.com.marioneto.productcatalog.core.network.service.CategoryService;
 import br.com.marioneto.productcatalog.core.network.service.ProductsService;
 import br.com.marioneto.productcatalog.dagger.scope.ActivityScope;
@@ -9,8 +8,6 @@ import br.com.marioneto.productcatalog.modules.category.CategoryListContract;
 import br.com.marioneto.productcatalog.modules.category.CategoryListPresenter;
 import br.com.marioneto.productcatalog.modules.highlights.HighlightsContract;
 import br.com.marioneto.productcatalog.modules.highlights.HighlightsPresenter;
-import br.com.marioneto.productcatalog.modules.product.detail.ProductDetailContract;
-import br.com.marioneto.productcatalog.modules.product.detail.ProductDetailPresenter;
 import br.com.marioneto.productcatalog.modules.main.MainContract;
 import br.com.marioneto.productcatalog.modules.main.MainPresenter;
 import br.com.marioneto.productcatalog.modules.product.list.ProductListContract;
@@ -27,12 +24,6 @@ public class PresenterModule {
     @ActivityScope
     MainContract.Presenter provideMainPresenter(ProductsService productsService) {
         return new MainPresenter(productsService);
-    }
-
-    @Provides
-    @ActivityScope
-    ProductDetailContract.Presenter provideProductDetailPresenter(ProductsService productsService) {
-        return new ProductDetailPresenter(productsService);
     }
 
     @Provides

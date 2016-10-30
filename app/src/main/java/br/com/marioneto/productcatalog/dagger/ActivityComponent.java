@@ -1,9 +1,7 @@
 package br.com.marioneto.productcatalog.dagger;
 
-import br.com.marioneto.productcatalog.core.model.ProductList;
 import br.com.marioneto.productcatalog.dagger.module.PresenterModule;
 import br.com.marioneto.productcatalog.dagger.scope.ActivityScope;
-import br.com.marioneto.productcatalog.modules.product.detail.ProductDetailActivity;
 import br.com.marioneto.productcatalog.modules.main.MainActivity;
 import br.com.marioneto.productcatalog.modules.product.list.ProductListActivity;
 import br.com.marioneto.productcatalog.modules.subcategory.SubCategoryListActivity;
@@ -18,7 +16,5 @@ public interface ActivityComponent {
     void inject(SubCategoryListActivity activity);
 
     void inject(ProductListActivity activity);
-
-    void inject(ProductDetailActivity activity);
 
 }
