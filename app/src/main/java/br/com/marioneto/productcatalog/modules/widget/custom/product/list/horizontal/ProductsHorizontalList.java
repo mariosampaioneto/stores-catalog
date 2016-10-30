@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import br.com.marioneto.productcatalog.R;
 import br.com.marioneto.productcatalog.core.model.Product;
+import br.com.marioneto.productcatalog.core.util.CircleTransform;
 import br.com.marioneto.productcatalog.core.util.StringFormatUtils;
 import br.com.marioneto.productcatalog.modules.widget.base.CustomFrameLayout;
 import br.com.marioneto.productcatalog.modules.widget.base.CustomViewGroup;
@@ -90,6 +91,7 @@ public class ProductsHorizontalList extends CustomFrameLayout {
         } else {
             Picasso.with(mContext)
                     .load(Uri.parse(imageUrl))
+                    .transform(new CircleTransform())
                     .into(mHighlightImageView);
         }
     }

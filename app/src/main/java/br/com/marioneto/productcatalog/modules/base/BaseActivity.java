@@ -1,5 +1,6 @@
 package br.com.marioneto.productcatalog.modules.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +15,7 @@ import br.com.marioneto.productcatalog.R;
 import br.com.marioneto.productcatalog.dagger.ActivityComponent;
 import br.com.marioneto.productcatalog.dagger.MainComponent;
 import br.com.marioneto.productcatalog.modules.widget.custom.dialog.DefaultProgressDialog;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -85,5 +87,10 @@ public class BaseActivity extends AppCompatActivity {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

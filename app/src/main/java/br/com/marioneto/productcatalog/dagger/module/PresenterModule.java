@@ -40,8 +40,8 @@ public class PresenterModule {
 
     @Provides
     @FragmentScope
-    HighlightsContract.Presenter provideHighlightsPresenter(ProductsService productsService) {
-        return new HighlightsPresenter(productsService);
+    HighlightsContract.Presenter provideHighlightsPresenter(ProductsService productsService, CategoryService categoryService) {
+        return new HighlightsPresenter(productsService, categoryService);
     }
 
     @Provides

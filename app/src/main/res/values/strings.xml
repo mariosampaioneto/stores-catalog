@@ -12,4 +12,7 @@
     <string name="progress_dialog_message">Aguarde...</string>
     <string name="error_dialog_title">Atenção</string>
     <string name="error_dialog_message">Ocorreu um problema ao carregar os dados\nDeseja tentar novamente?</string>
+
+    <!--highlights fragment-->
+    <string name="fragment_highlight_highlight_sub">Destaques de %s</string>
 </resources>

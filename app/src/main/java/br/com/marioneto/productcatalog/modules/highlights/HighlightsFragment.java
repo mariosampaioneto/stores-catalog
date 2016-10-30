@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import br.com.marioneto.productcatalog.R;
+import br.com.marioneto.productcatalog.core.model.CategoryItem;
+import br.com.marioneto.productcatalog.core.model.CategoryProductList;
 import br.com.marioneto.productcatalog.core.model.Product;
 import br.com.marioneto.productcatalog.modules.base.BaseFragment;
 import br.com.marioneto.productcatalog.modules.widget.custom.dialog.SimpleConfirmationDialog;
@@ -28,6 +30,9 @@ public class HighlightsFragment extends BaseFragment implements HighlightsContra
     HighlightsContract.Presenter presenter;
 
     ProductsHorizontalList mHighlightProductsHorizontalList;
+    ProductsHorizontalList mHighlightCat1ProductsHorizontalList;
+    ProductsHorizontalList mHighlightCat2ProductsHorizontalList;
+    ProductsHorizontalList mHighlightCat3ProductsHorizontalList;
 
     public HighlightsFragment() {
         // Required empty public constructor
@@ -45,6 +50,9 @@ public class HighlightsFragment extends BaseFragment implements HighlightsContra
         getFragmentComponent().inject(this);
         ButterKnife.bind(this, view);
         mHighlightProductsHorizontalList = (ProductsHorizontalList) view.findViewById(R.id.main_hor_product_view);
+        mHighlightCat1ProductsHorizontalList = (ProductsHorizontalList) view.findViewById(R.id.highlight_cat1);
+        mHighlightCat2ProductsHorizontalList = (ProductsHorizontalList) view.findViewById(R.id.highlight_cat2);
+        mHighlightCat3ProductsHorizontalList = (ProductsHorizontalList) view.findViewById(R.id.highlight_cat3);
 
         init();
 
@@ -54,6 +62,7 @@ public class HighlightsFragment extends BaseFragment implements HighlightsContra
     private void init() {
         presenter.bindView(this);
         presenter.requestProducts();
+        presenter.requestCategory(getString(R.string.MAIN_CATEGORY));
     }
 
     @Override
@@ -80,5 +89,38 @@ public class HighlightsFragment extends BaseFragment implements HighlightsContra
         new SimpleConfirmationDialog(getContext()).show(getString(R.string.error_dialog_title), getString(R.string.error_dialog_message), (dialog, which) -> {
             presenter.requestProducts();
         });
+    }
+
+    @Override
+    public void showCategoryHighlight(ArrayList<Product> products, String title, HighlightsContract.CategoryHighlight categoryHighlight) {
+        ProductsHorizontalList productsHorizontalList = mHighlightCat1ProductsHorizontalList;
+        if (categoryHighlight == HighlightsContract.CategoryHighlight.CAT_1) {
+            productsHorizontalList = mHighlightCat1ProductsHorizontalList;
+        } else if (categoryHighlight == HighlightsContract.CategoryHighlight.CAT_2) {
+            productsHorizontalList = mHighlightCat2ProductsHorizontalList;
+        } else if (categoryHighlight == HighlightsContract.CategoryHighlight.CAT_3) {
+            productsHorizontalList = mHighlightCat3ProductsHorizontalList;
+        }
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        productsHorizontalList.setTitle(title);
+        productsHorizontalList.setDescription(String.format(getString(R.string.fragment_highlight_highlight_sub), title));
+        productsHorizontalList.setImage(products.get(0).getImage());
+        productsHorizontalList.setRecyclerView(layoutManager, products);
+    }
+
+    @Override
+    public void hideCategoryHighlights(HighlightsContract.CategoryHighlight categoryHighlight) {
+        if (categoryHighlight == HighlightsContract.CategoryHighlight.CAT_1) {
+            mHighlightCat1ProductsHorizontalList.setVisibility(View.GONE);
+        } else if (categoryHighlight == HighlightsContract.CategoryHighlight.CAT_2) {
+            mHighlightCat2ProductsHorizontalList.setVisibility(View.GONE);
+        } else if (categoryHighlight == HighlightsContract.CategoryHighlight.CAT_3) {
+            mHighlightCat3ProductsHorizontalList.setVisibility(View.GONE);
+        } else {
+            mHighlightCat1ProductsHorizontalList.setVisibility(View.GONE);
+            mHighlightCat2ProductsHorizontalList.setVisibility(View.GONE);
+            mHighlightCat3ProductsHorizontalList.setVisibility(View.GONE);
+        }
     }
 }
